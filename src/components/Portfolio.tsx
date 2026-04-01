@@ -1,12 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
-  { title: "Creative Agency", category: "Brand Building", image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop" },
-  { title: "Tech Startup", category: "Website Development", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" },
-  { title: "E-commerce Platform", category: "Tech Solutions", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" },
-  { title: "Marketing Campaign", category: "Growth Marketing", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" },
-  { title: "Brand Identity", category: "Creative Studio", image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop" },
-  { title: "Performance Analytics", category: "Performance Boost", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" },
+  { title: "Creative Agency", category: "Brand Building", image: "..." },
+  { title: "Tech Startup", category: "Website Development", image: "..." },
+  { title: "E-commerce Platform", category: "Tech Solutions", image: "..." },
+  { title: "Marketing Campaign", category: "Growth Marketing", image: "..." },
+  { title: "Brand Identity", category: "Creative Studio", image: "..." },
+  { title: "Performance Analytics", category: "Performance Boost", image: "..." },
 ];
 
 const Portfolio = () => {
