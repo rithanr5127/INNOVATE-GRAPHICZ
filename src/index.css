@@ -48,7 +48,28 @@
     --brand-start: 217 91% 60%;
     --brand-end: 217 91% 75%;
   }
+}
 
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  .animate-particle-burst {
+    animation: particle-burst 1s ease-out forwards;
+  }
+  
+  @keyframes particle-burst {
+    0% {
+      transform: rotate(var(--rotation)) translateX(100px) scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--rotation)) translateX(200px) scale(0);
+      opacity: 0;
+    }
+  }
+}
   .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
@@ -70,7 +91,6 @@
     --input: 0 0% 16%;
     --ring: 217 91% 60%;
   }
-}
 
 @layer base {
   * {

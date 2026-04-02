@@ -4,7 +4,7 @@ const Hero = () => {
   const metrics = [
     { label: "Projects Delivered", value: "5+" },
     { label: "Client Retention", value: "100%" },
-    { label: "Experience", value: "3+ Months" },
+    { label: "Months Experience", value: "3+" },
   ];
 
   return (
