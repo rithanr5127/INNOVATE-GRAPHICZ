@@ -1,4 +1,15 @@
 {
+  "build": {
+    "env": {
+      "VITE_FIREBASE_API_KEY": "AIzaSyBI-DUaFGsZp8zDTBKqen3dwV10iaTl3tc",
+      "VITE_FIREBASE_AUTH_DOMAIN": "innovate-graphicz.firebaseapp.com",
+      "VITE_FIREBASE_PROJECT_ID": "innovate-graphicz",
+      "VITE_FIREBASE_STORAGE_BUCKET": "innovate-graphicz.firebasestorage.app",
+      "VITE_FIREBASE_MESSAGING_SENDER_ID": "308183112275",
+      "VITE_FIREBASE_APP_ID": "1:308183112275:web:2ba2e4389de67cc58d44a6",
+      "VITE_FIREBASE_MEASUREMENT_ID": "G-7YPRGD7EMD"
+    }
+  },
   "rewrites": [
     {
       "source": "/",
@@ -18,6 +29,14 @@
     },
     {
       "source": "/pricing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin/dashboard",
       "destination": "/index.html"
     },
     {
