@@ -8,7 +8,7 @@ const ADMIN_EMAILS = [
   "sivaasp1078@gmail.com"
 ];
 
-// TEMPORARY: Test login without email validation for debugging
+// TEMPORARY: Test login without email validation
 export const testLogin = async (email: string, password: string) => {
   try {
     console.log('Testing login with:', email);
@@ -18,15 +18,13 @@ export const testLogin = async (email: string, password: string) => {
   } catch (error: any) {
     console.error('Test login failed:', error);
     if (error.code === 'auth/user-not-found') {
-      throw new Error('User not found. Please create this user in Firebase Console → Authentication → Users.');
+      throw new Error('User not found. Please create this user in Firebase Console.');
     } else if (error.code === 'auth/wrong-password') {
       throw new Error('Incorrect password.');
     } else if (error.code === 'auth/invalid-email') {
       throw new Error('Invalid email format.');
     } else if (error.code === 'auth/missing-auth-domain') {
       throw new Error('Auth domain not configured. Check Firebase settings.');
-    } else if (error.code === 'auth/invalid-api-key') {
-      throw new Error('Invalid API key. Check Firebase configuration.');
     } else {
       throw new Error(`Login failed: ${error.message || error.code}`);
     }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, ArrowLeft, Home } from 'lucide-react';
-import { loginAdmin } from '../../firebase/auth';
+import { loginAdmin, testLogin } from '../../firebase/auth';
 import { useAuth } from '../../hooks/useAuth';
 
 const AdminLogin = () => {
@@ -28,7 +28,8 @@ const AdminLogin = () => {
     setError('');
 
     try {
-      await loginAdmin(email, password);
+      // Use testLogin temporarily for debugging
+      await testLogin(email, password);
       navigate('/admin/dashboard');
     } catch (error: any) {
       setError(error.message || 'Login failed. Please check your credentials.');
