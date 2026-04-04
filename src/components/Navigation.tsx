@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
+import { isCurrentUserAdmin } from "../firebase/auth";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isAuthenticated, user } = useAuth();
+  
+  // Check if current user is an authorized admin
+  const isAuthorizedAdmin = isAuthenticated && isCurrentUserAdmin();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -58,6 +64,27 @@ const Navigation = () => {
             ))}
           </div>
 
+          {/* Admin Login Button */}
+          <div className="hidden md:block">
+            {isAuthorizedAdmin ? (
+              <button
+                onClick={() => window.location.href = "/admin/dashboard"}
+                className="flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2 text-sm text-gray-400 transition-all duration-300 hover:border-blue-500 hover:text-white"
+              >
+                <User className="w-4 h-4" />
+                Admin
+              </button>
+            ) : (
+              <button
+                onClick={() => window.location.href = "/admin/login"}
+                className="flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2 text-sm text-gray-400 transition-all duration-300 hover:border-blue-500 hover:text-white"
+              >
+                <User className="w-4 h-4" />
+                Admin Login
+              </button>
+            )}
+          </div>
+
           <button
             className="hidden rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:scale-105 lg:inline-flex"
             onClick={() => scrollTo("#contact")}
@@ -87,6 +114,21 @@ const Navigation = () => {
                 {link.label}
               </button>
             ))}
+            
+            {/* Mobile Admin Login Button */}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                window.location.href = isAuthorizedAdmin ? "/admin/dashboard" : "/admin/login";
+              }}
+              className="w-full rounded-lg border border-gray-700 px-3 py-2 text-left text-sm font-medium text-gray-400 transition-all duration-300 hover:border-blue-500 hover:bg-gray-900 hover:text-white"
+            >
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4" />
+                {isAuthorizedAdmin ? "Admin Dashboard" : "Admin Login"}
+              </div>
+            </button>
+            
             <button
               className="mt-2 w-full rounded-full bg-blue-500 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:scale-105"
               onClick={() => scrollTo("#contact")}

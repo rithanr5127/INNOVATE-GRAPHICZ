@@ -7,6 +7,9 @@ import Pricing from "./pages/Pricing";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 import LandingAnimation from "./components/LandingAnimation";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,15 @@ const App = () => {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route 
+                path="/admin/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                } 
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </>

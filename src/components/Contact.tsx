@@ -1,28 +1,49 @@
 import { useState } from "react";
 import { Mail, Phone, Send, MapPin } from "lucide-react";
+import { addLead } from "../firebase/firestore";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", mobile: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!form.name.trim()) errs.name = "Name is required";
     if (!form.email.trim()) errs.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Invalid email";
+    if (!form.mobile.trim()) errs.mobile = "Mobile number is required";
+    else if (!/^[6-9]\d{9}$/.test(form.mobile.replace(/\s/g, ''))) errs.mobile = "Invalid mobile number";
     if (!form.message.trim()) errs.message = "Message is required";
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     setErrors(errs);
+    
     if (Object.keys(errs).length === 0) {
-      setSubmitted(true);
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setSubmitted(false), 3000);
+      setLoading(true);
+      try {
+        // Save to Firebase
+        await addLead({
+          name: form.name,
+          email: form.email,
+          phone: form.mobile,
+          message: form.message
+        });
+        
+        setSubmitted(true);
+        setForm({ name: "", email: "", mobile: "", message: "" });
+        setTimeout(() => setSubmitted(false), 3000);
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        setErrors({ ...errs, submit: 'Failed to submit form. Please try again.' });
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -43,6 +64,11 @@ const Contact = () => {
             {submitted && (
               <div className="mb-6 rounded-xl border border-blue-500 bg-blue-500/10 p-4 text-center">
                 <p className="text-sm font-semibold text-blue-500">Thank you! We'll be in touch soon.</p>
+              </div>
+            )}
+            {errors.submit && (
+              <div className="mb-6 rounded-xl border border-red-500 bg-red-500/10 p-4 text-center">
+                <p className="text-sm font-semibold text-red-500">{errors.submit}</p>
               </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -71,6 +97,18 @@ const Contact = () => {
               </div>
               
               <div>
+                <label className="block text-sm font-medium text-white mb-2">Mobile Number</label>
+                <input
+                  type="tel"
+                  placeholder="Enter your mobile number"
+                  value={form.mobile}
+                  onChange={(e) => setForm({ ...form, mobile: e.target.value })}
+                  className="w-full rounded-xl border border-gray-700 bg-gray-900 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-blue-500 focus:outline-none transition-all duration-300 hover:border-gray-600"
+                />
+                {errors.mobile && <p className="mt-1.5 text-xs text-red-500">{errors.mobile}</p>}
+              </div>
+              
+              <div>
                 <label className="block text-sm font-medium text-white mb-2">Your Message</label>
                 <textarea
                   placeholder="Tell us about your project..."
@@ -84,9 +122,19 @@ const Contact = () => {
               
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:scale-105"
+                disabled={loading}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message <Send className="w-4 h-4" />
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </form>
           </div>
