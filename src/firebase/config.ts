@@ -7,13 +7,13 @@ import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 // Use environment variables for production deployment
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBI-DUaFGsZp8zDTBKqen3dwV10iaTl3tc",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "innovate-graphicz.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "innovate-graphicz",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "innovate-graphicz.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "308183112275",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:308183112275:web:2ba2e4389de67cc58d44a6",
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-7YPRGD7EMD"
+  apiKey: (import.meta.env?.VITE_FIREBASE_API_KEY as string) || "AIzaSyBI-DUaFGsZp8zDTBKqen3dwV10iaTl3tc",
+  authDomain: (import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN as string) || "innovate-graphicz.firebaseapp.com",
+  projectId: (import.meta.env?.VITE_FIREBASE_PROJECT_ID as string) || "innovate-graphicz",
+  storageBucket: (import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET as string) || "innovate-graphicz.firebasestorage.app",
+  messagingSenderId: (import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID as string) || "308183112275",
+  appId: (import.meta.env?.VITE_FIREBASE_APP_ID as string) || "1:308183112275:web:2ba2e4389de67cc58d44a6",
+  measurementId: (import.meta.env?.VITE_FIREBASE_MEASUREMENT_ID as string) || "G-7YPRGD7EMD"
 };
 
 // Initialize Firebase with error handling
