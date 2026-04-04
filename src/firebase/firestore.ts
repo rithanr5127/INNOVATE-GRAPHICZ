@@ -7,7 +7,8 @@ import {
   orderBy, 
   onSnapshot,
   where,
-  getDocs
+  getDocs,
+  Firestore
 } from 'firebase/firestore';
 import { db, LeadData, Lead } from './config';
 

@@ -1,26 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore, Firestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
-// Use environment variables for production deployment
+// Direct configuration for production deployment
 const firebaseConfig = {
-  apiKey: (import.meta.env?.VITE_FIREBASE_API_KEY as string) || "AIzaSyBI-DUaFGsZp8zDTBKqen3dwV10iaTl3tc",
-  authDomain: (import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN as string) || "innovate-graphicz.firebaseapp.com",
-  projectId: (import.meta.env?.VITE_FIREBASE_PROJECT_ID as string) || "innovate-graphicz",
-  storageBucket: (import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET as string) || "innovate-graphicz.firebasestorage.app",
-  messagingSenderId: (import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID as string) || "308183112275",
-  appId: (import.meta.env?.VITE_FIREBASE_APP_ID as string) || "1:308183112275:web:2ba2e4389de67cc58d44a6",
-  measurementId: (import.meta.env?.VITE_FIREBASE_MEASUREMENT_ID as string) || "G-7YPRGD7EMD"
+  apiKey: "AIzaSyBI-DUaFGsZp8zDTBKqen3dwV10iaTl3tc",
+  authDomain: "innovate-graphicz.firebaseapp.com",
+  projectId: "innovate-graphicz",
+  storageBucket: "innovate-graphicz.firebasestorage.app",
+  messagingSenderId: "308183112275",
+  appId: "1:308183112275:web:2ba2e4389de67cc58d44a6",
+  measurementId: "G-7YPRGD7EMD"
 };
 
 // Initialize Firebase with error handling
-let app;
-let analytics;
-let auth;
-let db;
+let app: any;
+let analytics: any;
+let auth: Auth;
+let db: Firestore;
 
 try {
   app = initializeApp(firebaseConfig);
