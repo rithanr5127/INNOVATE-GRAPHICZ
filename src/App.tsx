@@ -11,6 +11,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingAnimation from "./components/LandingAnimation";
+import { app } from './firebase/config';
 
 const queryClient = new QueryClient();
 
@@ -20,18 +21,17 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false); // Set to false to bypass loading
 
   useEffect(() => {
-    // Simplified Firebase test - just check if we can import
+    // Simplified Firebase test - just check if app is initialized
     try {
-      import('./firebase/config').then(() => {
-        console.log('Firebase import successful');
+      if (app) {
+        console.log('Firebase initialized successfully');
         setFirebaseError(null);
-      }).catch((error) => {
-        console.error('Firebase import failed:', error);
-        setFirebaseError('Firebase import failed');
-      });
+      } else {
+        throw new Error('Firebase app not initialized');
+      }
     } catch (error) {
-      console.error('Firebase test error:', error);
-      setFirebaseError('Firebase test failed');
+      console.error('Firebase initialization error:', error);
+      setFirebaseError('Firebase connection failed');
     } finally {
       setIsLoading(false);
     }

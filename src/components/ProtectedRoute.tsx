@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { isCurrentUserAdmin } from '../firebase/auth';
+import { isCurrentUserAdmin } from '../firebase/config';
 
 interface ProtectedRouteProps {
   children: ReactNode;

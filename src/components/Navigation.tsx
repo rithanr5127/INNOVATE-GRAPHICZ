@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, User } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
-import { isCurrentUserAdmin } from "../firebase/auth";
+import { auth, isCurrentUserAdmin } from "../firebase/config";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

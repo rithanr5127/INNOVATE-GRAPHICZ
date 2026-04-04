@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Lead } from '../firebase/config';
-import { getLeadsRealtime, searchLeads } from '../firebase/firestore';
+import { getLeadsRealtime, searchLeads, deleteLead as deleteLeadFromFirebase } from '../firebase/firestore';
 
 export const useLeads = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -21,7 +21,6 @@ export const useLeads = () => {
 
   const deleteLead = async (leadId: string) => {
     try {
-      const { deleteLead: deleteLeadFromFirebase } = await import('../firebase/firestore');
       await deleteLeadFromFirebase(leadId);
     } catch (error) {
       setError('Failed to delete lead');

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/config';
+import { auth, logoutAdmin } from '../firebase/config';
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -17,7 +17,6 @@ export const useAuth = () => {
 
   const logout = async () => {
     try {
-      const { logoutAdmin } = await import('../firebase/auth');
       await logoutAdmin();
     } catch (error) {
       console.error('Logout error:', error);

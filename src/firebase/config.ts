@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, Auth } from 'firebase/auth';
+import { getAuth, Auth, signOut } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -42,7 +42,31 @@ try {
   }
 }
 
+// Export Firebase instances and functions
 export { app, analytics, auth, db };
+
+// Export logout function
+export const logoutAdmin = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Admin emails for authorization
+const ADMIN_EMAILS = [
+  "logeshshivakumar200@gmail.com",
+  "rgkayal@gmail.com", 
+  "rithanr5127@gmail.com",
+  "sivaasp1078@gmail.com"
+];
+
+// Check if current user is admin
+export const isCurrentUserAdmin = (): boolean => {
+  const user = auth.currentUser;
+  return user ? ADMIN_EMAILS.includes(user.email || '') : false;
+};
 
 // Export types for TypeScript
 export interface LeadData {

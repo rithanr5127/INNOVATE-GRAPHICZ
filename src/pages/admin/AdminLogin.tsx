@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, ArrowLeft, Home } from 'lucide-react';
-import { loginAdmin, testLogin } from '../../firebase/auth';
+import { testLogin } from '../../firebase/auth';
 import { useAuth } from '../../hooks/useAuth';
 
 const AdminLogin = () => {
