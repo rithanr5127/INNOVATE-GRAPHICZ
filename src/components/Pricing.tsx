@@ -1,35 +1,63 @@
 import { Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const plans = [
   {
-    name: "Starter",
-    price: "₹25,000",
+    name: "Trial Package",
+    price: "₹999",
     desc: "For new businesses and startups",
-    features: ["Brand Strategy", "Basic Website", "Social Media Setup", "2 Revisions", "Email Support"],
+    features: ["Brand Strategy", "7 days valid", "Social Media Setup", "Ad Management", "Creative content creation", "And many more..."],
     highlighted: false,
   },
   {
-    name: "Growth",
-    price: "₹50,000",
+    name: "Growth Package",
+    price: "₹5,999",
     desc: "For growing businesses",
-    features: ["Everything in Starter", "Advanced Website", "SEO Optimization", "Marketing Campaign", "5 Revisions", "Priority Support"],
-    highlighted: true,
+    features: ["Brand Strategy", "30 days valid", "Social Media Management", "8 Creative Posts", "1 Basic cut video edit", "And many more..."],
+    highlighted: false,
   },
   {
-    name: "Pro",
-    price: "Custom",
-    desc: "For established businesses",
-    features: ["Everything in Growth", "Full Digital Ecosystem", "Ongoing Maintenance", "Dedicated Team", "Unlimited Revisions", "24/7 Support"],
+    name: "Premium Package",
+    price: "₹9,999",
+    desc: "For growing businesses",
+    features: ["Everything in Growth Package", "Ad Management for 1 video", "24/7 Engagement support", "MSME Registration Support", "Marketing support", "And many more..."],
     highlighted: false,
+  },
+  {
+    name: "Portfolio web design",
+    price: "₹5,999",
+    desc: "Static web pages starts from",
+    features: ["Responsive web design", "Domain support [.in, .com, .tech, etc...]", "1 year maintanence support", "3 revision / year", "Extra changes will be charged", "Year renewal Available", "Domain Renewal will be charged separately"],
+    highlighted: false,
+  },
+  {
+    name: "E-commerce / business web design",
+    price: "₹14,999",
+    desc: "Dynamic web designs starts from",
+    features: ["Dynamic & Responsive web design", "Domain + Hosting support", "1 year Maintenance support", "5 revisions / year", "Extra changes will be charged", "Year renewal Available", "Domain Renewal will be charged separately"],
+    highlighted: false,
+  },
+  {
+    name: "Enterprise Plan",
+    price: "Custom",
+    desc: "For all businesses",
+    features: ["Connect to discuss about pricing and services"],
+    highlighted: true,
   },
 ];
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
+  const handleChoosePlan = () => {
+    navigate('/contact');
+  };
+
   return (
     <section id="pricing" className="enterprise-section relative">
       <div className="enterprise-shell">
         <div className="mx-auto mb-14 max-w-3xl text-center">
-          <p className="section-kicker mb-4">Commercial Models</p>
+          <p className="section-kicker mb-4">Commercial Models & Development Models</p>
           <h2 className="section-title">
             Flexible Plans For <span className="text-blue-500">Any Growth Stage</span>
           </h2>
@@ -66,6 +94,7 @@ const Pricing = () => {
                 ))}
               </ul>
               <button
+                onClick={handleChoosePlan}
                 className={`w-full rounded-full py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 ${
                   plan.highlighted
                     ? "bg-blue-500 text-white hover:bg-blue-600"
@@ -81,5 +110,7 @@ const Pricing = () => {
     </section>
   );
 };
+
+
 
 export default Pricing;
