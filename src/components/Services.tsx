@@ -1,4 +1,5 @@
 import { Palette, Globe, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const services = [
   { 
@@ -16,6 +17,12 @@ const services = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/pricing');
+  };
+
   return (
     <section id="services" className="enterprise-section relative">
       <div className="enterprise-shell">
@@ -62,7 +69,10 @@ const Services = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <button className="flex items-center gap-2 text-base font-semibold text-blue-500 transition-colors duration-300 group-hover:text-blue-400">
+                <button 
+                  onClick={handleGetStarted}
+                  className="flex items-center gap-2 text-base font-semibold text-blue-500 transition-colors duration-300 group-hover:text-blue-400"
+                >
                   Get Started 
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
