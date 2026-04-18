@@ -23,6 +23,7 @@ const Navigation = () => {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Pricing", href: "/pricing" },
     { label: "Contact", href: "/contact" },
+    { label: "Verify Certificate", href: "/verify-certificate" },
   ];
 
   const scrollTo = (href: string) => {

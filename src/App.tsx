@@ -9,6 +9,7 @@ import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import CertificateVerification from "./pages/CertificateVerification";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingAnimation from "./components/LandingAnimation";
 import { app } from './firebase/config';
@@ -98,6 +99,7 @@ const App = () => {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/verify-certificate" element={<CertificateVerification />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route 
                 path="/admin/dashboard" 

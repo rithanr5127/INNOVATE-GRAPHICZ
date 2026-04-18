@@ -1,0 +1,40 @@
+{
+  "certificates": [
+  
+    {
+      "id": "IGZ26B1003",
+      "name": "KAYAL VIZHI R",
+      "domain": "DIGITAL MARKETING INTERN",
+      "issueDate": "2026-04-21",
+      "status": "verified"
+    },
+    {
+      "id": "IGZ26B1004",
+      "name": "LOGESH S",
+      "domain": "DIGITAL MARKETING & OPERATIONS INTERN",
+      "issueDate": "2026-04-21",
+      "status": "verified"
+    },
+    {
+      "id": "IGZ26B1005",
+      "name": "RAKSHANA S",
+      "domain": "AI MARKETING INTERN",
+      "issueDate": "2026-05-28",
+      "status": "verified"
+    },
+    {
+      "id": "IGZ26B1006",
+      "name": "SHARMIKA R S",
+      "domain": "AI & CREATIVE MARKETING INTERN",
+      "issueDate": "2026-05-28",
+      "status": "verified"
+    },
+    {
+      "id": "IGZ26B1007",
+      "name": "SOWBARNIKA",
+      "domain": "CREATIVE MARKETING INTERN",
+      "issueDate": "2026-05-28",
+      "status": "verified"
+    }
+  ]
+}
